@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-		
-        <title>Testing Plugins</title>
-		
-<link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+  <head>
+    <title>Acceleration Example</title>
 
-<script src="js/jquery.js"> </script>
-
-<script src="js/jquery.mobile-1.4.5.js"></script>
-    </head>
-    <body>
-     
-      <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
     <script type="text/javascript" charset="utf-8">
-    // Wait for device API libraries to load
+
+    // The watch id references the current `watchAcceleration`
+    var watchID = null;
+
+    // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
 
-    // device APIs are available
+    // Cordova is ready
     //
     function onDeviceReady() {
-        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+        startWatch();
+    }
+
+    // Start watching the acceleration
+    //
+    function startWatch() {
+
+        // Update acceleration every 3 seconds
+        var options = { frequency: 30 };
+
+        watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    }
+
+    // Stop watching the acceleration
+    //
+    function stopWatch() {
+        if (watchID) {
+            navigator.accelerometer.clearWatch(watchID);
+            watchID = null;
+        }
     }
 
     // onSuccess: Get a snapshot of the current acceleration
     //
     function onSuccess(acceleration) {
-        alert('Acceleration X: ' + acceleration.x + '\n' +
-              'Acceleration Y: ' + acceleration.y + '\n' +
-              'Acceleration Z: ' + acceleration.z + '\n' +
-              'Timestamp: '      + acceleration.timestamp + '\n');
+        var element = document.getElementById('accelerometer');
+        element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
+                            'Acceleration Y: ' + acceleration.y + '<br />' +
+                            'Acceleration Z: ' + acceleration.z + '<br />' +
+                            'Timestamp: '      + acceleration.timestamp + '<br />';
     }
 
     // onError: Failed to get the acceleration
@@ -40,12 +53,13 @@
     function onError() {
         alert('onError!');
     }
-
+ function getAcceleration(){ 
+ navigator.accelerometer.getCurrentAcceleration(onAccelSuccess, onError); 
+ }
     </script>
-	  <h1>Example</h1>
-    <p>getCurrentAcceleration</p>
-	
-
- 	
-    </body>
+  </head>
+  <body>
+    <div id="accelerometer">Waiting for accelerometer...</div>
+	<p> <button onclick="getAcceleration()">Get Acceleration</button> </p>
+  </body>
 </html>
