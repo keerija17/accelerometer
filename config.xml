@@ -1,16 +1,25 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Accelerometer</name>
-    <description>
-        A blank PhoneGap app.
-    </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
-	
-<plugin name="Accelerometer" value="org.apache.cordova.AccelListener" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.gs.calc"
+    versionCode = "1"
+    version     = "1.0.0" >
+
+<!-- versionCode is optional and Android only -->
+<!-- version is in major.minor.patch format-->
+
+  <name>Hello World Example</name>
+
+  <description>
+      An example for Mobile App Development Lecture at UTM.
+  </description>
+
+  <author href="https://build.phonegap.com" email="geerish.suddul@gmail.com">
+      Geerish Suddul
+  </author>
+<feature name="Accelerometer">
+    <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
+</feature>
 
 
 </widget>
