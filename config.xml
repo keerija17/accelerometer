@@ -10,8 +10,8 @@
     <content src="index.html" />
     <access origin="*" />
 	
-<gap:plugin name="org.apache.cordova.device-motion" />
-<gap:plugin name="org.apache.cordova.device-orientation" />
 
+<plugin name="org.apache.cordova.device-motion" spec="0.2.16" source="npm" />
+<plugin name="org.apache.cordova.device-orientation" spec="0.2.16" source="npm" />
 
 </widget>
