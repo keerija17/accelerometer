@@ -1,4 +1,4 @@
-# A Blank PhoneGap App
+# Accelerometer plugin
 
 ## Usage
 
