@@ -1,61 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <title>Device Ready Example</title>
 
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
 
-    function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
+      
+  
 
-    function onDeviceReady() {
-        alert("Device is Ready");
-        alert(device.available);
-    }
+    function handleOrientation(event) {
+  var absolute = event.absolute;
+  var alpha    = event.alpha;
+  var beta     = event.beta;
+  var gamma    = event.gamma;
+document.getElementById("output1").innerHTML="beta :"+beta;
+document.getElementById("output2").innerHTML="gamma:"+gamma;
+document.getElementById("output3").innerHTML="absolute:"+absolute;
+document.getElementById("output4").innerHTML="alpha:"+alpha;
 
-    function getAcceleration(){
-        navigator.accelerometer.getCurrentAcceleration(onAccelSuccess, onError);
-    }
+}
 
-    function onAccelSuccess(acceleration) {
-        var element = document.getElementById('accelerometer');
-        element.innerHTML = 'Acceleration X: ' + acceleration.x         + '<br />' +
-                            'Acceleration Y: ' + acceleration.y         + '<br />' +
-                            'Acceleration Z: ' + acceleration.z         + '<br />' +
-                            'Timestamp: '      + acceleration.timestamp + '<br />';
-    }
+  window.addEventListener("deviceorientation", handleOrientation, true);
 
-    function onError() {
-        alert('onError!');
-    }
-
-    function startWatch() {
-        // Update acceleration every 1 seconds
-        var options = { frequency: 1000 };
-
-        watchID = navigator.accelerometer.watchAcceleration(onAccelSuccess, onError, options);
-    }
-
-    function stopWatch() {
-        if (watchID) {
-            navigator.accelerometer.clearWatch(watchID);
-            watchID = null;
-        }
-    }
     </script>
+
   </head>
-  <body onload="onLoad()">
-    <p>
-        <button onclick="getAcceleration()">Get Acceleration</button>
-    </p>
-    <p>
-        <button onclick="startWatch()">Watch Acceleration</button>
-    </p>
-    <p>
-        <button onclick="stopWatch()">Stop Watching Acceleration</button>
-    </p>
-    <div id="accelerometer">Waiting for accelerometer...</div>
+  <body style="background-color: red;">
+    <h1 style="font-family: 'Times New Roman', Times, serif ;">Tilt your phone to get different accelerometer values</h1>
+
+    <div style="margin-top: 55%;margin-left: 15%; background-color: yellow; width:200px;  ">
+    <span id="output1"></span><br>
+    <span id="output2"></span><br>
+    <span id="output3"></span><br>
+    <span id="output4"></span>
+      </div>
   </body>
 </html>
